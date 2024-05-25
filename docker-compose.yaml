@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  windows:
+    image: dockurr/windows
+    container_name: windows
+    ports:
+      - 3333:80
+      - 8006:8006
+      - 3389:3389/tcp
+      - 3389:3389/udp
+    environment:
+      VERSION: "win11"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4"
+      DISK_SIZE: "300G"
+      # ARGUMENTS: > 
+      #   -device vfio-pci,host=01:00.0,bus=1,addr=00.0,multifunction=on,x-vga=on
+      #   -device vfio-pci,host=01:00.1,bus=1,addr=00.1
+    network_mode: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /home/jefripunza/win:/storage
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/kvm
+      - /dev/vfio/vfio
+    stop_grace_period: 2m
+    restart: on-failure
