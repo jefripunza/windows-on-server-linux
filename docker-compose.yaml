@@ -15,7 +15,7 @@ services:
       DISK_SIZE: "300G"
       # ARGUMENTS: > 
       #   -device vfio-pci,host=01:00.0,bus=1,addr=00.0,multifunction=on,x-vga=on
-      #   -device vfio-pci,host=01:00.1,bus=1,addr=00.1
+      #   -device vfio-pci,host=01:00.1,bus=1,addr=00.1 
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
